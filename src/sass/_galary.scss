@@ -1,0 +1,123 @@
+a {
+  text-decoration: none;
+}
+.search-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.search-form input {
+  width: 20%;
+  padding: 8px 10px;
+  border-color: #007bff;
+  border-radius: 5px;
+}
+
+.search-form button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+.search-form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.load-more.is-hidden {
+  display: none;
+}
+.load-more:disabled {
+  background-color: #c1c1c1;
+  cursor: not-allowed;
+}
+.gallery,
+.info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.gallery {
+  margin-right: 20px;
+  padding-top: 30px;
+  justify-content: center;
+}
+
+.gallery__link {
+  margin-top: 20px;
+  margin-left: 20px;
+  min-width: 320px;
+  flex-basis: calc((100% - 80px) / 4);
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.gallery__link:hover,
+.gallery__link:focus {
+  transform: scale(1.05);
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.gallery-item__img {
+  display: block;
+  height: 30vh;
+  object-fit: cover;
+}
+
+.info {
+  padding: 10px;
+  justify-content: space-around;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.load-more-hidden {
+  display: none;
+}
+
+.load-more {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+
+}
+.load-more:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
