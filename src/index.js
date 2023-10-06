@@ -13,6 +13,7 @@ let query = '';
 let simpleLightBox;
 loadMoreBtn.classList.replace("load-more", "load-more-hidden");
 
+
 searchForm.addEventListener('submit', onSearchForm);
 
  async function onSearchForm(e) {
@@ -27,23 +28,31 @@ searchForm.addEventListener('submit', onSearchForm);
       );
       return;
     }
+
+    try {
+
     await fetchImages(query, page, perPage)
+
     .then(data => {
+
         if (data.totalHits === 0) {
           Notiflix.Notify.failure(
-            'Sorry, there are no images matching your search query. Please try again.',
-          );
-        } else {
+            'Sorry, there are no images matching your search query. Please try again.')}
+            else if(data.totalHits <= perPage) {
+              loadMoreBtn.classList.replace("load-more", "load-more-hidden");}
+         else {
           gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits));
           simpleLightBox = new SimpleLightbox('.gallery a').refresh();
           Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
           loadMoreBtn.classList.replace("load-more-hidden", "load-more");
         }
       })
-      .catch(error => console.log(error))
-      .finally(() => {
+    }
+
+    catch (error) {
+    console.log(error);
+  }
         searchForm.reset();
-      });
 
       // Прокручування сторінки на висоту 2 карток галереї при завантаженні
   const { height: cardHeight } = document
@@ -54,7 +63,7 @@ window.scrollBy({
   top: cardHeight * 2,
   behavior: 'smooth',
 });
-    }
+ }
 
 
 loadMoreBtn.addEventListener('click', onClick)
@@ -63,23 +72,32 @@ async function onClick({ target }) {
   page +=1;
   target.disabled = true;
 
+try {
+
   await fetchImages(query, page, perPage)
+
   .then(data => {
     gallery.insertAdjacentHTML('beforeend', createMarcup(data.hits));
     simpleLightBox = new SimpleLightbox('.gallery a').refresh();
 
-    const totalPages = Math.ceil(data.totalHits / perPage);
 
-    if (page > totalPages) {
+    const totalPages = Math.ceil(data.totalHits / perPage);
+    if (page >= totalPages) {
       loadMoreBtn.classList.replace("load-more", "load-more-hidden");
       Notiflix.Notify.failure(
         "We're sorry, but you've reached the end of search results.",
       );
     }
   })
-  .catch(error => console.log(error))
-  .finally(() => (target.disabled = false));
 }
+
+catch (error) {
+console.log(error);
+}
+
+  target.disabled = false
+}
+
 
     function createMarcup(arr) {
         return arr.map(({ id,
